@@ -43,7 +43,7 @@ jobs:
                 ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=review-filmes;Username=review;Password=postgrespwd"
     sonarqube:
         name: Scan com sonarqube
-        runs-on: apache
+        runs-on: [self-hosted]
         steps:
             - name: Obtendo o codigo do projeto
               uses: actions/checkout@v4
