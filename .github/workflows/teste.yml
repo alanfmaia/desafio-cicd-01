@@ -52,6 +52,8 @@ jobs:
               with:
                 java-version: '21'
                 distribution: temurin
+            - name: Force env para dotnet 
+              run: export PATH="$PATH:/home/alan/.dotnet/tools"
             - name: Setup dotnet
               uses: actions/setup-dotnet@v4
               with:
