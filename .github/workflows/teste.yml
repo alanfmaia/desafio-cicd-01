@@ -51,13 +51,13 @@ jobs:
               uses: actions/setup-java@v4
               with:
                 java-version: '21'
-                distribution: adopt
+                distribution: temurin
             - name: Setup dotnet
               uses: actions/setup-dotnet@v4
               with:
                 dotnet-version: "8.0.300"
-              env:
-                DOTNET_INSTALL_DIR: ${{ runner.tool_cache }}/dotnet
+            - name: Adicionar .NET tools no PATH
+              run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
             - name: Instalação sonarqube scan
               run: dotnet tool install --global dotnet-sonarscanner
             - name: Build e analise
