@@ -110,7 +110,7 @@ jobs:
                 SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                 SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
               with:
-                scanMetadataReportFile: ./src/.sonarqube/.sonar/report-task.txt
+                scanMetadataReportFile: ./src/.sonarqube/out/.sonar/report-task.txt
             - name: Show Quality Gate Status
               if: ${{ always() }}
               run: echo "Status do quality gate eh ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status}}"
