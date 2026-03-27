@@ -62,7 +62,7 @@ jobs:
               run: dotnet tool install --global dotnet-sonarscanner
             - name: Build e analise
               run: |
-                dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="http://192.168.15.56:9000"  /d:sonar.token="sqp_5daa2d2376ca3c692c68f0ff10ce7ac59df7d8fd"
+                dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="http://192.168.15.56:9000"  /d:sonar.token="sqp_a89711fc75d9a303c70a7b3ef5d1e8393e4efd08"
                 dotnet build Review-Filmes.sln
-                dotnet sonarscanner end /d:sonar.token="sqp_5daa2d2376ca3c692c68f0ff10ce7ac59df7d8fd"
+                dotnet sonarscanner end /d:sonar.token="sqp_a89711fc75d9a303c70a7b3ef5d1e8393e4efd08"
             
