@@ -12,7 +12,7 @@ jobs:
             - name: Setup dotnet
               uses: actions/setup-dotnet@v4
               with:
-                dotnet-version: "8.0.300"
+                dotnet-version: "8.0"
             - name: Execução do teste de unidade
               working-directory: ./src
               run: dotnet test ./Review-Filmes.Test.Unit/Review-Filmes.Test.Unit.csproj
@@ -35,7 +35,7 @@ jobs:
             - name: Setup dotnet
               uses: actions/setup-dotnet@v4
               with:
-                dotnet-version: "8.0.300"
+                dotnet-version: "8.0"
             - name: Execução do teste de integracao
               working-directory: ./src
               run: dotnet test ./Review-Filmes.Test.Integration/Review-Filmes.Test.Integration.csproj
@@ -55,7 +55,7 @@ jobs:
             - name: Setup dotnet
               uses: actions/setup-dotnet@v4
               with:
-                dotnet-version: "8.0.300"
+                dotnet-version: "8.0"
             - name: Instalação sonarqube scan
               run: dotnet tool install --global dotnet-sonarscanner
             - name: Build e analise
