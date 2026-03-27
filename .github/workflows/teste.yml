@@ -66,9 +66,9 @@ jobs:
     #         - name: Build e analise
     #           working-directory: ./src
     #           run: |
-    #                 dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="http://192.168.15.56:9000"  /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
+    #                 dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"  /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
     #                 dotnet build Review-Filmes.sln
-    #                 dotnet sonarscanner end /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
+    #                 dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
     sonarqube:
         name: Scan com sonarqube
@@ -99,6 +99,19 @@ jobs:
             - name: Build e analise
               working-directory: ./src
               run: |
-                dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="http://192.168.15.56:9000"  /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
+                dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"  /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
                 dotnet build Review-Filmes.sln
-                dotnet sonarscanner end /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
+                dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
+            - name: SonarQube Quality Gate check
+              uses: sonarsource/sonarqube-quality-gate-action@master
+              id: sonarqube-quality-gate-check
+              env:
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+              with:
+                scanMetadataReportFile: ./src/.sonarqube/.sonar/report-task.txt
+            - name: Show Quality Gate Status
+              if: ${{ always() }}
+              run: echo "Status do quality gate eh ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status}}"
+                
