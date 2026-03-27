@@ -84,7 +84,11 @@ jobs:
             - name: Instalar Java
               run: |
                 apt-get update
-                apt-get install -y openjdk-21-jdk
+            - name: Setup JDK
+              uses: actions/setup-java@v4
+              with:
+                    java-version: '21'
+                    distribution: temurin
 
             - name: Instalar SonarScanner
               run: dotnet tool install --global dotnet-sonarscanner
