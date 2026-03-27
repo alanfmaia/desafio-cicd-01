@@ -43,64 +43,30 @@ jobs:
                 ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=review-filmes;Username=review;Password=postgrespwd"
 
     sonarqube:
-    name: Scan com sonarqube
-    runs-on: self-hosted
-
-    container:
-        image: mcr.microsoft.com/dotnet/sdk:8.0
-
-    steps:
-        - name: Obtendo o codigo do projeto
-        uses: actions/checkout@v4
-
-        - name: Instalar Java
-        run: |
-            apt-get update
-            apt-get install -y openjdk-21-jdk
-
-        - name: Instalar SonarScanner
-        run: dotnet tool install --global dotnet-sonarscanner
-
-        - name: Adicionar tools ao PATH
-        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
-
-        - name: Build e analise
-        working-directory: ./src
-        run: |
-            dotnet-sonarscanner begin \
-            /k:"filmes" \
-            /d:sonar.host.url="http://192.168.15.56:9000" \
-            /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
-
-            dotnet build Review-Filmes.sln
-
-            dotnet-sonarscanner end \
-            /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
-# sonarqube:
-    #     name: Scan com sonarqube
-    #     runs-on: [self-hosted]
-    #     steps:
-    #         - name: Obtendo o codigo do projeto
-    #           uses: actions/checkout@v4
-    #         - name: Setup JDK
-    #           uses: actions/setup-java@v4
-    #           with:
-    #             java-version: '21'
-    #             distribution: temurin
-    #         # - name: Force env para dotnet 
-    #         #   run: export PATH="$PATH:/home/alan/.dotnet/tools"
-    #         - name: Setup dotnet
-    #           uses: actions/setup-dotnet@v4
-    #           with:
-    #             dotnet-version: "8.0.300"
-    #         #   env:
-    #         #     DOTNET_INSTALL_DIR: ${{ runner.tool_cache }}/dotnet
-    #         - name: Instalação sonarqube scan
-    #           run: dotnet tool install --global dotnet-sonarscanner
-    #         - name: Build e analise
-    #           working-directory: ./src
-    #           run: |
-    #             dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="http://192.168.15.56:9000"  /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
-    #             dotnet build Review-Filmes.sln
-    #             dotnet sonarscanner end /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
+        name: Scan com sonarqube
+        runs-on: [self-hosted]
+        steps:
+            - name: Obtendo o codigo do projeto
+              uses: actions/checkout@v4
+            - name: Setup JDK
+              uses: actions/setup-java@v4
+              with:
+                    java-version: '21'
+                    distribution: temurin
+            - name: Force env .NET para path
+              run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+            - name: Setup dotnet
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.300"
+            #   env:
+            #     DOTNET_INSTALL_DIR: ${{ runner.tool_cache }}/dotnet
+            - name: Instalação sonarqube scan
+              run: dotnet tool install --global dotnet-sonarscanner
+            - name: Build e analise
+              working-directory: ./src
+              run: |
+                    dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="http://192.168.15.56:9000"  /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
+                    dotnet build Review-Filmes.sln
+                    dotnet sonarscanner end /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
             
