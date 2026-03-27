@@ -52,14 +52,14 @@ jobs:
               with:
                 java-version: '21'
                 distribution: temurin
-            - name: Force env para dotnet 
-              run: export PATH="$PATH:/home/alan/.dotnet/tools"
+            # - name: Force env para dotnet 
+            #   run: export PATH="$PATH:/home/alan/.dotnet/tools"
             - name: Setup dotnet
               uses: actions/setup-dotnet@v4
               with:
                 dotnet-version: "8.0.300"
-              env:
-                DOTNET_INSTALL_DIR: ${{ runner.tool_cache }}/dotnet
+            #   env:
+            #     DOTNET_INSTALL_DIR: ${{ runner.tool_cache }}/dotnet
             - name: Instalação sonarqube scan
               run: dotnet tool install --global dotnet-sonarscanner
             - name: Build e analise
