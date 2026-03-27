@@ -64,6 +64,6 @@ jobs:
               working-directory: ./src
               run: |
                 dotnet sonarscanner begin /k:"filmes" /d:sonar.host.url="http://192.168.15.56:9000"  /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
-                dotnet Review-Filmes.sln
+                dotnet build Review-Filmes.sln
                 dotnet sonarscanner end /d:sonar.token="sqp_540e2174357d1f5374130e76e88c1631a53145ee"
             
