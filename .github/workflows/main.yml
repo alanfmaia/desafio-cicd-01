@@ -55,7 +55,7 @@ jobs:
             afmaia/devops-pro:${{ github.run_number }}
 
       - name: Executar o Trivy
-        uses: aquasecurity/trivy-action@0.33.1
+        uses: aquasecurity/trivy-action@v0.35.0
         with:
           scan-type: "image"
           image-ref: "afmaia/devops-pro:${{ github.run_number }}"
