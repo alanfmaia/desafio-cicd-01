@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Analise do Dockefile
-        uses: hadolint/hadolint-action@v1v3.1.0
+        uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: ./src/Review-Filmes.Web/Dockerfile
       - name: Efetuando login no docker hub
@@ -55,7 +55,7 @@ jobs:
             afmaia/devops-pro:${{ github.run_number }}
 
       - name: Executar o Trivy
-        uses: aquasecurity/trivy-action@0.23.0
+        uses: aquasecurity/trivy-action@0.33.1
         with:
           scan-type: "image"
           image-ref: "afmaia/devops-pro:${{ github.run_number }}"
