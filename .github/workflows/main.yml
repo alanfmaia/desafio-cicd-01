@@ -85,7 +85,7 @@ jobs:
       name: homologacao
 
     container:
-      image: fabricioveronez/webdriber-dotnet:chrome
+      image: afmaia/teste-dotnet:chrome
       env:
         BASE_URL: "http://${{ vars.BASE_URL }}"
 
