@@ -26,7 +26,7 @@ jobs:
                 method: kubeconfig
                 kubeconfig: ${{ secrets.K8S_CONFIG }}
             - name: Update Deployment
-              run: "sed -i 's/host: homologacao.alanfmaia.com.br/host ${{ vars.BASE_URL }}/g' k8s/deployment.yaml"
+              run: "sed -i 's/host: homologacao.alanfmaia.com.br/host: ${{ vars.BASE_URL }}/g' k8s/deployment.yaml"
             - name: Deploy no Kubernetes
               uses: Azure/k8s-deploy@v5
               with:
