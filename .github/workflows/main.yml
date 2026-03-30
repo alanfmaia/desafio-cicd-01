@@ -95,7 +95,7 @@ jobs:
       
       - name: Execução do codigo do teste end2end
         working-directory: ./src
-        run: dotnet test ./Review-Filmes.Test.End2End/Review-Filmes.Test.End2End.csproj  
+        run: dotnet test ./Review-Filmes.Test.EndtoEnd/Review-Filmes.Test.EndtoEnd.csproj  
   deploy-producao:
     needs: [deploy-homolog]
     uses: alanfmaia/desafio-cicd-01/.github/workflows/deploy.yml@main
